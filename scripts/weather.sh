@@ -4,15 +4,15 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$CURRENT_DIR/helpers.sh"
 
 get_weather() {
-  local location=$(get_tmux_option "@tmux-weather-location")
-  local format=$(get_tmux_option "@tmux-weather-format" 1)
-  local units=$(get_tmux_option "@tmux-weather-units" "m")
+  local location=$(get_tmux_option "@tmux-weather-geo-location")
+  local token=$(get_tmux_option "@tmux-weather-token")
 
-  if [ "$units" != "m" ] && [ "$units" != "u" ]; then
-    units="m"
-  fi
+  local response=$(curl -s "https://api.caiyunapp.com/v2.5/$token/$location/realtime.json")
 
-  curl -s "https://wttr.in/$location?$units&format=$format" | sed "s/[[:space:]]km/km/g"
+  local temperature=$(echo "$response" | jq -r '.result.realtime.temperature')
+  local air_quality=$(echo "$response" | jq -r '.result.realtime.air_quality.description.chn')
+
+  echo "$temperature""°C 空气$air_quality"
 }
 
 main() {

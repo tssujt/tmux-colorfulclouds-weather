@@ -1,19 +1,17 @@
-# Weather plugin for tmux
-[![GitHub](https://img.shields.io/github/license/xamut/tmux-weather)](https://opensource.org/licenses/MIT)
+# ColorfulClouds Weather plugin for tmux
+[![GitHub](https://img.shields.io/github/license/tssujt/tmux-colorfulclouds-weather)](https://opensource.org/licenses/MIT)
 
-Shows weather in the status line, data provided by [wttr.in](https://wttr.in)
-
-![tmux-weather](./assets/tmux-preview.png)
+Shows weather in the status line, data provided by [ColorfulClouds](https://caiyunapp.com/)
 
 ## Installation
 ### Requirements
 * curl
-* sed
+* jq
 
 ### With Tmux Plugin Manager
 Add the plugin in `.tmux.conf`:
 ```
-set -g @plugin 'xamut/tmux-weather'
+set -g @plugin 'tssujt/tmux-colorfulclouds-weather'
 ```
 Press `prefix + I` to fetch the plugin and source it. Done.
 
@@ -21,7 +19,7 @@ Press `prefix + I` to fetch the plugin and source it. Done.
 Clone the repo somewhere. Add `run-shell` in the end of `.tmux.conf`:
 
 ```
-run-shell PATH_TO_REPO/tmux-weather.tmux
+run-shell PATH_TO_REPO/tmux-colorfulclouds-weather.tmux
 ```
 NOTE: this line should be placed after `set-option -g status-right ...`.
 
@@ -37,13 +35,8 @@ then you will see the current weather in the status line: `⛅️ -1°C`
 ## Customization
 The plugin could be customized with:
 * `set-option -g @tmux-weather-interval 15` - Set up the update interval in minutes, by default it is 15 minutes.
-* `set-option -g @tmux-weather-location "Tomsk"` - Set up your location, by default you will get the weather for your current location based on your IP address.
-* `set-option -g @tmux-weather-format "%c+%t+%w"` - Set up a representation, by default it is 1, for more options go to [https://github.com/chubin/wttr.in#one-line-output](https://github.com/chubin/wttr.in#one-line-output)
-* `set-option -g @tmux-weather-units" "m"` - Set up weather units (u - for USCS, m - for metric system), by default used metric units.
-
-## Other plugins
-* [tmux-network-bandwidth](https://github.com/xamut/tmux-network-bandwidth)
-* [tmux-spotify](https://github.com/xamut/tmux-spotify)
+* `set-option -g @tmux-weather-geo-location "30,120"` - Set up your location.
+* `set-option -g @tmux-weather-token "yourtoken"` - Set up your ColorfulClouds weather API token.
 
 ## License
-tmux-weather plugin is released under the [MIT License](https://opensource.org/licenses/MIT).
+tmux-colorfulclouds-weather plugin is released under the [MIT License](https://opensource.org/licenses/MIT).

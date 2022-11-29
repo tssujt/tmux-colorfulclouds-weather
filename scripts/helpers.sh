@@ -19,4 +19,3 @@ set_tmux_option() {
   local option_value="$2"
   $(tmux set-option -gq $option_name "$option_value")
 }
-
