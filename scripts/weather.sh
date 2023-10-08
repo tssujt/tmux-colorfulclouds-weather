@@ -7,7 +7,7 @@ get_weather() {
   local location=$(get_tmux_option "@tmux-weather-geo-location")
   local token=$(get_tmux_option "@tmux-weather-token")
 
-  local response=$(curl -s "https://api.caiyunapp.com/v2.5/$token/$location/realtime.json")
+  local response=$(curl -s "https://api.caiyunapp.com/v2.6/$token/$location/realtime.json")
 
   local temperature=$(echo "$response" | jq -r '.result.realtime.temperature')
   local air_quality=$(echo "$response" | jq -r '.result.realtime.air_quality.description.chn')
